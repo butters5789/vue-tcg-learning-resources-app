@@ -5,7 +5,7 @@
 
 <script>
 import LearningResources from './components/learning-resources/LearningResources.vue';
-import TheHeader from './components/layouts/TheHeader.vue'
+import TheHeader from './components/layouts/TheHeader.vue';
 
 export default {
   components: {
