@@ -1,4 +1,16 @@
 <template>
+  <base-dialog v-if="!formIsValid" title="Invalid Input" @close="closeDialog">
+    <template #default>
+      <p>The form is missing some information.</p>
+
+      <p>Please check all fields and try again.</p>
+    </template>
+
+    <template #actions>
+      <base-button @click="closeDialog">Okay</base-button>
+    </template>
+  </base-dialog>
+
   <base-card>
     <form @submit.prevent="submitData">
       <div class="form-control">
@@ -36,11 +48,29 @@ export default {
       required: true,
     },
   },
+  data() {
+    return {
+      formIsValid: true,
+    };
+  },
   methods: {
+    closeDialog() {
+      this.formIsValid = true;
+    },
     submitData() {
       const enteredTitle = this.$refs.titleInput.value;
       const enteredDescription = this.$refs.descriptionInput.value;
       const enteredLink = this.$refs.linkInput.value;
+
+      if (
+        enteredTitle.trim() === '' ||
+        enteredDescription.trim() === '' ||
+        enteredLink.trim() === ''
+      ) {
+        this.formIsValid = false;
+
+        return;
+      }
 
       this.addResource(enteredTitle, enteredDescription, enteredLink);
     },
