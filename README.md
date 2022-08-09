@@ -1,5 +1,5 @@
-### Vue - The Complete Guide
+# Vue - The Complete Guide
 
 ## Vue Learning Resources App
 
-# Project 2
+### Project 2
